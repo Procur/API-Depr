@@ -21,7 +21,7 @@ module.exports = {
                 if(err){ return res.send(500, 'Lost in space!'); }
                 token.hash(apitoken, function(err, encryptedToken){
                     params.password = hash;
-                    params.token = encryptedToken;
+                    params.apiToken = encryptedToken;
                     User.create(params, function(err, user){
                         if(err){ return res.send(500, 'Lost in space!'); }
                         if(user === undefined) { return res.send(500, 'Lost in space!'); }
