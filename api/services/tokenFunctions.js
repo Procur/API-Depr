@@ -21,7 +21,7 @@ module.exports = {
         });
     },
 
-    validate: function(req, callback){
-        var apitoken = req.header('apitoken');
+    validate: function(){
+
     }
 }

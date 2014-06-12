@@ -34,7 +34,20 @@ module.exports = {
     },
 
     login: function(req, res){
-        console.log('login');
+        var email = req.header('email'),
+            password = req.header('password');
+
+        User.find({ email: email }, function(err, user){
+            if(err) { return res.send(500, 'Lost in space!'); }
+            if(user === undefined){ return res.send(400, 'Invalid email address'); }
+            auth.verifyPassword(user.password, password, function(err, res){
+                if(err){ return res.send(400, 'Invalid password'); }
+                if(res){
+                    res.status(200);
+                    res.json(user);
+                }
+            });
+        });
     }
 	
 };

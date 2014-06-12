@@ -8,5 +8,11 @@ module.exports = {
                 callback(err, hash);
             });
         });
+    },
+
+    verifyPassword: function(hash, submittedPassword, callback ){
+        bcrypt.compare(hash, submittedPassword, function(err, res){
+            callback(err, res);
+        });
     }
 }
