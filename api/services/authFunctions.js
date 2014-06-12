@@ -11,8 +11,9 @@ module.exports = {
     },
 
     verifyPassword: function(hash, submittedPassword, callback ){
-        bcrypt.compare(hash, submittedPassword, function(err, res){
-            callback(err, res);
+        bcrypt.compare(submittedPassword, hash, function(err, response){
+            if(err){ console.log(err); }
+            callback(err, response);
         });
     }
 }
