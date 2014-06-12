@@ -6,13 +6,16 @@
  */
 
 //LIBRARY INCLUSIONS//
-var bcrypt = require('bcrypt');
+var token = require('../services/tokenfunctions.js');
 /////////////////////
 
 module.exports = {
 
-    signup: function(req, res){
+    signup: function(req, res) {
 
+        token.generate(function(token){
+           console.log(token);
+        });
     },
 
     login: function(req, res){
@@ -20,4 +23,5 @@ module.exports = {
     }
 	
 };
+
 
