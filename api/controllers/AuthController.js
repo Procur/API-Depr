@@ -27,7 +27,6 @@ module.exports = {
                         if(user === undefined) { return res.send(500, 'Lost in space!'); }
                         res.status(201);
                         res.json(user);
-
                     });
                 });
             });
