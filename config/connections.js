@@ -29,12 +29,7 @@ module.exports.connections = {
 
   mongo: {
       adapter: 'sails-mongo',
-      host: 'localhost',
-      port: 27017,
-      database: 'api'
-      // user: 'username',
-      // password: 'password',
-      // database: 'your_mongo_db_name_here'
+      url: process.env.MONGOHQ_URL
   },
 
   localDiskDb: {

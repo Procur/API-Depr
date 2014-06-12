@@ -1,9 +1,13 @@
 /**
  * AuthController
  *
- * @description :: Server-side logic for managing auths
+ * @description :: Server-side logic for managing authentication
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+
+//LIBRARY INCLUSIONS//
+var bcrypt = require('bcrypt');
+/////////////////////
 
 module.exports = {
 

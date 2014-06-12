@@ -35,12 +35,10 @@ module.exports.session = {
   // The following values are optional, if no options are set a redis instance running
   // on localhost is expected.
   // Read more about options at: https://github.com/visionmedia/connect-redis
-  //
-  host: 'localhost',
-  port: 6379,
-  // ttl: <redis session TTL in seconds>,
-  db: 'api'
-  // pass: <redis auth password>
+  host: process.env.REDIS_HOST || 'localhost',
+  port: process.env.REDIS_PORT || 6379,
+  db: process.env.REDIS_DB || 'api',
+  pass: process.env.REDIS_PASS || ""
   // prefix: 'sess:'
 
 
