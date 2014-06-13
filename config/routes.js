@@ -30,8 +30,6 @@ module.exports.routes = {
   'post /signup': 'AuthController.signup',
   'post /login': 'AuthController.login',
 
-  'post /test': 'AuthController.test'
-
 
   // Custom routes here...
 
