@@ -34,7 +34,7 @@ module.exports = {
     });
   },
 
-  login: function(req, res, next){
+  login: function(req, res){
     var email = req.header('email'),
         password = req.header('password');
 
@@ -74,9 +74,19 @@ module.exports = {
           });
         }
         else{
-          return res.send(400, 'Invalid password');
+          return res.send(403, 'Invalid password');
         }
       });
+    });
+  },
+
+  test: function(req, res){
+    var apitoken = req.header('apitoken');
+    token.validate(req, res, apitoken, function(result){
+      if(result){
+        //woot. validated
+      }
+
     });
   }
 };
