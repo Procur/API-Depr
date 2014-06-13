@@ -71,7 +71,7 @@ module.exports = {
                 });
               });
             }
-          })
+          });
         }
         else{
           return res.send(400, 'Invalid password');
