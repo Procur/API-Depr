@@ -16,18 +16,22 @@ module.exports = {
 
     var params = req.params.all();
     auth.hashPassword(params.password, function(err, hash){
-      if(err) { res.send(500, 'Lost in space!'); }
+      if(err) { res.send(500, 'Lost in spaceee!'); }
       token.generate(function(err, apitoken){
         if(err){ return res.send(500, 'Lost in space!'); }
         token.hash(apitoken, function(err, encryptedToken){
           params.password = hash;
-          params.apiToken = encryptedToken;
           User.create(params, function(err, user){
             if(err){ return res.send(500, 'Lost in space!'); }
             if(user === undefined) { return res.send(500, 'Lost in space!'); }
-            user.apiToken = apitoken;
-            res.status(201);
-            res.json(user);
+            var expiry = token.generateExpiry();
+            ApiToken.create({ user: user.id, token: apitoken, activeUntil: expiry }, function(err, newToken){
+              console.log(err);
+              console.log(newToken);
+              if((err) || (newToken === undefined)){ return res.send(500, 'Lost in spaceeeeeeee!'); }
+              res.status(201);
+              res.json(user);
+            });
           });
         });
       });
