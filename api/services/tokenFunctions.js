@@ -13,7 +13,15 @@ module.exports = {
     });
   },
 
-  hash: function (token, callback) {
+  saveToken: function(user, apitoken, callback){
+    var currentDate = new Date();
+    var expirationDate = currentDate.setDate(currentDate.getDate() + 7);
+    ApiToken.create({ user: user.id, token: apitoken, activeUntil: expirationDate }, function(err, token){
+      callback(err, token);
+    });
+  },
+
+  hash: function(token, callback) {
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(token, salt, function (err, hash) {
         callback(err, hash);
@@ -21,11 +29,13 @@ module.exports = {
     });
   },
 
-  validate: function (tokenHash, token, callback) {
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.compare(token, tokenHash, function (err, res) {
-        callback(err, res);
-      });
-    });
+  generateExpiry: function(){
+    var d = new Date();
+    d.setDate(d.getDate() + 7);
+    return d;
+  },
+
+  validate: function (token, submittedToken) {
+    return token == submittedToken;
   }
 }

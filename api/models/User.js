@@ -29,11 +29,6 @@ module.exports = {
       type: 'string',
       required: true
     },
-    apiToken: {
-      type: 'string',
-      required: 'true',
-      unique: 'true'
-    },
     emailVerified: {
       type: 'boolean',
       required: true

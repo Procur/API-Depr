@@ -44,8 +44,34 @@ module.exports = {
       auth.verifyPassword(user.password, password, function(err, response){
         if(err){ return res.send(500, 'Lost in space!+'); }
         if(response){
-          res.status(200);
-          res.json(user);
+          ApiToken.findOne({ user: user.id }, function(err, tokenToDelete){
+            if(err){ return res.send(500, 'Lost in space!'); }
+            if(tokenToDelete !== undefined){
+              ApiToken.destroy(tokenToDelete, function(err, deletedToken){
+                if((err) || (deletedToken === undefined)){ return res.send(500, 'Lost in spaceeee!'); }
+                token.generate(function(err, apitoken){
+                  if((err) || (apitoken === undefined)) { return res.send(500, 'Lost in space!'); }
+                  var expiry = token.generateExpiry();
+                  ApiToken.create({ user: user.id, token: apitoken, activeUntil: expiry }, function(err, token){
+                    if((err) || (token === undefined)){ return res.send(500, 'Lost in spaeeeece!');}
+                    res.status(200);
+                    res.json([user, token]);
+                  });
+                });
+              });
+            }
+            else{
+              token.generate(function(err, apitoken){
+                if((err) || (apitoken === undefined)) { return res.send(500, 'Lost in space!'); }
+                var expiry = token.generateExpiry();
+                ApiToken.create({ user: user.id, token: apitoken, activeUntil: expiry }, function(err, token){
+                  if((err) || (token === undefined)){ return res.send(500, 'Lost in spaeeeece!');}
+                  res.status(200);
+                  res.json([user, token]);
+                });
+              });
+            }
+          })
         }
         else{
           return res.send(400, 'Invalid password');
