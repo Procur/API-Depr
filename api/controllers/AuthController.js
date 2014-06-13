@@ -37,7 +37,6 @@ module.exports = {
   login: function(req, res){
     var email = req.header('email'),
         password = req.header('password');
-
     User.findOne({ email: email }, function(err, user){
       if(err) { return res.send(500, 'Lost in space!'); }
       if(user === undefined){ return res.send(400, 'Invalid email address'); }
@@ -77,16 +76,6 @@ module.exports = {
           return res.send(403, 'Invalid password');
         }
       });
-    });
-  },
-
-  test: function(req, res){
-    var apitoken = req.header('apitoken');
-    token.validate(req, res, apitoken, function(result){
-      if(result){
-        //woot. validated
-      }
-
     });
   }
 };
