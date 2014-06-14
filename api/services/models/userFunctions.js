@@ -1,7 +1,7 @@
 var handler = require('../errorHandlers.js');
 
 module.exports = {
-  findByToken: function(token, callback){
+  findByApiToken: function(token, callback){
 
   },
 
@@ -9,5 +9,12 @@ module.exports = {
     User.findOne({ email: email}, function(err, user){
       callback(err, user);
     });
+  },
+
+  setEmailVerified: function(res, user, callback){
+    User.update({ emailVerified: true }, function(err, user){
+      handler.serverError(res, err);
+      callback(user);
+    });
   }
-}
+};

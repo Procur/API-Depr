@@ -12,7 +12,7 @@ var nodemailer = require('nodemailer'),
       }
     }),
     handler = require('../errorHandlers.js'),
-    user = require('../models/userFunctions.js'),
+    apiuser = require('../models/userFunctions.js'),
     hostname = process.env.HOSTNAME || 'localhost:1337';
 ///////////////////////////
 
@@ -41,6 +41,14 @@ module.exports = {
   },
 
   processEmailActivation: function(req, res, activationToken, callback){
-
+    EmailToken.findOne({ token: activationToken}, function(err, token){
+      handler.serverError(res, err);
+      if(token === undefined){ return res.send(400, 'Invalid activation token'); }
+      apiuser.findByEmail(token.email, function(err, user){
+        apiuser.setEmailVerified(res, user, function(user){
+          callback(user);
+        });
+      });
+    });
   }
 };

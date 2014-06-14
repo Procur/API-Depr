@@ -17,7 +17,6 @@ var token = require('../services/tokenfunctions.js'),
 module.exports = {
 
   signup: function(req, res) {
-
     var params = req.params.all();
     auth.hashPassword(params.password, function(err, hash){
       params.password = hash;
@@ -95,6 +94,13 @@ module.exports = {
           return res.send(403, 'Invalid password');
         }
       });
+    });
+  },
+
+  processEmailActivation: function(req, res){
+    var activationToken = req.query.token;
+    mailer.processEmailActivation(req, res, activationToken, function(user){
+      return res.send(200, 'Email verified');
     });
   },
 
