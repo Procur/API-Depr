@@ -24,6 +24,15 @@ module.exports = {
     },
     expired: {
       type: 'boolean'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.activeUntil;
+      delete obj.createdAt;
+      delete obj.updatedAt;
+      delete obj.id;
+      delete obj.user;
+      return obj;
     }
   }
 };

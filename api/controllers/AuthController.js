@@ -6,8 +6,11 @@
  */
 
 // LIBRARY INCLUSIONS //
-var token = require('../services/tokenfunctions.js');
-var auth = require('../services/authFunctions.js');
+var token = require('../services/tokenfunctions.js'),
+    auth = require('../services/authFunctions.js'),
+    account = require('../services/models/userFunctions.js'),
+    handler = require('../services/errorHandlers.js');
+
 ///////////////////////
 
 module.exports = {
@@ -16,22 +19,31 @@ module.exports = {
 
     var params = req.params.all();
     auth.hashPassword(params.password, function(err, hash){
-      if(err) { res.send(500, 'Lost in spaceee!'); }
+      handler.serverError(res, err);
       token.generate(function(err, apitoken){
-        if(err){ return res.send(500, 'Lost in space!'); }
+        handler.serverError(res, err);
         token.hash(apitoken, function(err, encryptedToken){
+          handler.serverError(res, err);
           params.password = hash;
-          User.create(params, function(err, user){
-            if(err){ return res.send(500, 'Lost in space!'); }
-            if(user === undefined) { return res.send(500, 'Lost in space!'); }
-            var expiry = token.generateExpiry();
-            ApiToken.create({ user: user.id, token: apitoken, activeUntil: expiry }, function(err, newToken){
-              console.log(err);
-              console.log(newToken);
-              if((err) || (newToken === undefined)){ return res.send(500, 'Lost in spaceeeeeeee!'); }
-              res.status(201);
-              res.json(user);
-            });
+          account.findByEmail(params.email, function(err, user){
+            if(user === undefined){
+              User.create(params, function(err, user){
+                handler.serverError(res, err);
+                if(user === undefined) { return res.send(500, 'Lost in space!'); }
+                var expiry = token.generateExpiry();
+                ApiToken.create({ user: user.id, token: encryptedToken, activeUntil: expiry }, function(err, newToken){
+                  console.log(err);
+                  console.log(newToken);
+                  if((err) || (newToken === undefined)){ return res.send(500, 'Lost in space!'); }
+                  res.status(201);
+                  res.json([user, newToken]);
+                });
+              });
+            }
+            else {
+              res.status(400);
+              return res.send('Email address already registered');
+            }
           });
         });
       });
@@ -41,14 +53,14 @@ module.exports = {
   login: function(req, res){
     var email = req.header('email'),
         password = req.header('password');
-    User.findOne({ email: email }, function(err, user){
-      if(err) { return res.send(500, 'Lost in space!'); }
+    account.findByEmail(email, function(err, user){
+      handler.serverError(res, err);
       if(user === undefined){ return res.send(400, 'Invalid email address'); }
       auth.verifyPassword(user.password, password, function(err, response){
-        if(err){ return res.send(500, 'Lost in space!'); }
+        handler.serverError(res, err);
         if(response){
           ApiToken.findOne({ user: user.id }, function(err, tokenToDelete){
-            if(err){ return res.send(500, 'Lost in space!'); }
+            handler.serverError(res, err);
             if(tokenToDelete !== undefined){
               ApiToken.destroy(tokenToDelete, function(err, deletedToken){
                 if((err) || (deletedToken === undefined)){ return res.send(500, 'Lost in space!'); }
