@@ -9,6 +9,7 @@ module.exports = {
 
   tableName: 'user',
   schema: true,
+  adapter: 'api',
 
   attributes: {
 

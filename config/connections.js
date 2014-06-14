@@ -25,11 +25,16 @@ module.exports.connections = {
   //
   // Installed by default.
   //
-  'default': 'mongo',
+  'default': 'api',
 
-  mongo: {
+  api: {
       adapter: 'sails-mongo',
       url: process.env.MONGOHQ_URL || 'mongodb://localhost:27017/api'
+  },
+
+  logging: {
+    adapter: 'sails-mongo',
+    url: process.env.LOGGING_DB_URL || 'mongodb://localhost:27017/log'
   },
 
   localDiskDb: {
