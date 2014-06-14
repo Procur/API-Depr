@@ -7,6 +7,7 @@
 
 module.exports = {
 
+  adapter: 'logging',
   attributes: {
 
     content: {
