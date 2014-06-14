@@ -25,16 +25,20 @@ module.exports = {
         handler.serverError(res, err);
         token.hash(apitoken, function(err, encryptedToken){
           handler.serverError(res, err);
+          //CHECK FOR EXISTENCE OF SUBMITTED EMAIL ADDRESS
           account.findByEmail(params.email, function(err, user){
             if(user === undefined){
+              //CREATE USER
               User.create(params, function(err, user){
                 handler.serverError(res, err);
                 if(user === undefined) { return res.send(500, 'Lost in space!'); }
                 var expiry = token.generateExpiry();
+                //CREATE API TOKEN
                 ApiToken.create({ user: user.id, token: encryptedToken, activeUntil: expiry }, function(err, newToken){
                   console.log(err);
                   console.log(newToken);
                   if((err) || (newToken === undefined)){ return res.send(500, 'Lost in space!'); }
+                  //SEND ACTIVATION EMAIL
                   mailer.sendActivationEmail(res, user.email, function(res){
                     res.status(201);
                     res.json([user, newToken]);
@@ -103,6 +107,10 @@ module.exports = {
       res.status(200);
       res.json(user, 'Email verified');
     });
+  },
+
+  changePassword: function(req, res){
+
   },
 
   test: function(req, res){

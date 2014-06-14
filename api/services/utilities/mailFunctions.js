@@ -30,12 +30,20 @@ module.exports = {
           generateTextFromHTML: true,
           html: activationMessage
           };
-      EmailToken.create({ email: email, token: emailToken }, function(err, token){
+      EmailToken.findOne({ email: email }, function(err, token){
         handler.serverError(res, err);
-        smtpTransport.sendMail(mailOptions, function(err, response){
-          handler.serverError(res, err);
-          callback(response);
-        });
+        if(token !== undefined){
+          EmailToken.destroy(token, function(err, token){
+            handler.serverError(res, err);
+            EmailToken.create({ email: email, token: emailToken }, function(err, token){
+              handler.serverError(res, err);
+              smtpTransport.sendMail(mailOptions, function(err, response){
+                handler.serverError(res, err);
+                callback(response);
+              });
+            });
+          });
+        }
       });
     });
   },
