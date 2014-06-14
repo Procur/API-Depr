@@ -9,7 +9,8 @@
 var token = require('../services/tokenfunctions.js'),
     auth = require('../services/authFunctions.js'),
     account = require('../services/models/userFunctions.js'),
-    handler = require('../services/errorHandlers.js');
+    handler = require('../services/errorHandlers.js'),
+    mailer = require('../services/utilities/mailFunctions.js');
 
 ///////////////////////
 
@@ -35,8 +36,10 @@ module.exports = {
                   console.log(err);
                   console.log(newToken);
                   if((err) || (newToken === undefined)){ return res.send(500, 'Lost in space!'); }
-                  res.status(201);
-                  res.json([user, newToken]);
+                  mailer.sendActivationEmail(res, user.email, function(res){
+                    res.status(201);
+                    res.json([user, newToken]);
+                  });
                 });
               });
             }
@@ -93,6 +96,10 @@ module.exports = {
         }
       });
     });
+  },
+
+  test: function(req, res){
+    console.log(process.env.HOSTNAME);
   }
 };
 

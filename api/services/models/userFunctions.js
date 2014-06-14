@@ -1,4 +1,4 @@
-var handle = require('../errorHandlers.js');
+var handler = require('../errorHandlers.js');
 
 module.exports = {
   findByToken: function(token, callback){
