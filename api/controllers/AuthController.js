@@ -6,7 +6,7 @@
  */
 
 // LIBRARY INCLUSIONS //
-var token = require('../services/tokenfunctions.js'),
+var token = require('../services/tokenFunctions.js'),
     auth = require('../services/authFunctions.js'),
     account = require('../services/models/userFunctions.js'),
     handler = require('../services/errorHandlers.js'),
@@ -100,7 +100,8 @@ module.exports = {
   processEmailActivation: function(req, res){
     var activationToken = req.query.token;
     mailer.processEmailActivation(req, res, activationToken, function(user){
-      return res.send(200, 'Email verified');
+      res.status(200);
+      res.json(user, 'Email verified');
     });
   },
 
