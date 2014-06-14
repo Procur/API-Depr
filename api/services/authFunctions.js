@@ -10,10 +10,15 @@ module.exports = {
     });
   },
 
-  verifyPassword: function(hash, submittedPassword, callback ){
+  verifyPassword: function(hash, submittedPassword, callback){
     bcrypt.compare(submittedPassword, hash, function(err, response){
-      if(err){ console.log(err); }
       callback(err, response);
     });
+  },
+
+  changePassword: function(user, newPasswordHash, callback){
+    User.update(user, { password: newPasswordHash }, function(err, user){
+      callback(err, user);
+    });
   }
-}
+};

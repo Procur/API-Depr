@@ -110,7 +110,18 @@ module.exports = {
   },
 
   changePassword: function(req, res){
-
+    var submittedPassword = req.param('password'),
+        token = req.param('apitoken');
+    auth.hashPassword(submittedPassword, function(err, hashedPassword){
+      handler.serverError(res, err);
+      account.findByApiToken(res, token, function(err, user){
+        auth.changePassword(user, hashedPassword, function(err, user){
+          handler.serverError(res, err);
+          res.status(200);
+          res.json(user, 'Password changed');
+        });
+      });
+    });
   },
 
   test: function(req, res){
