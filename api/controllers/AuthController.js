@@ -19,12 +19,12 @@ module.exports = {
 
     var params = req.params.all();
     auth.hashPassword(params.password, function(err, hash){
+      params.password = hash;
       handler.serverError(res, err);
       token.generate(function(err, apitoken){
         handler.serverError(res, err);
         token.hash(apitoken, function(err, encryptedToken){
           handler.serverError(res, err);
-          params.password = hash;
           account.findByEmail(params.email, function(err, user){
             if(user === undefined){
               User.create(params, function(err, user){
