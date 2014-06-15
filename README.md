@@ -1,6 +1,6 @@
 # Procur API
 ### HOST: api.procur.com
-# Group Authentication
+#Authentication
 
 ## Create User [/signup]
 
