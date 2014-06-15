@@ -18,9 +18,11 @@ module.exports = {
 
   signup: function(req, res) {
     var params = req.params.all();
+    //HASH SUBMITTED PASSWORD
     auth.hashPassword(params.password, function(err, hash){
       params.password = hash;
       handler.serverError(res, err);
+      //GENERATE API TOKEN
       token.generate(function(err, apitoken){
         handler.serverError(res, err);
         token.hash(apitoken, function(err, encryptedToken){

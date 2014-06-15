@@ -7,7 +7,7 @@ module.exports = function(req, res){
       return next();
     }
     else {
-      return res.send(400, 'You shall not pass.');
+      return res.send(400, 'Invalid API token. You shall not pass.');
     }
   });
 }
