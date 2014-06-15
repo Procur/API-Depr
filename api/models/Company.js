@@ -10,6 +10,21 @@ module.exports = {
   adapter: 'api',
   attributes: {
 
+
+    //ASSOCIATIONS
+    users: {
+      collection: 'User',
+      via: 'company'
+    },
+
+    buyer: {
+      model: 'Buyer'
+    },
+
+    supplier: {
+      model: 'Supplier'
+    }
+
   }
 };
 

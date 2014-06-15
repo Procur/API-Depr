@@ -49,6 +49,11 @@ module.exports = {
       type: 'string'
     },
 
+    //ASSOCIATIONS
+    company: {
+      model: 'Company'
+    },
+
     //UTILITY
 
     active: {

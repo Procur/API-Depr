@@ -10,6 +10,13 @@ module.exports = {
   adapter: 'api',
   attributes: {
 
+    company: {
+      model: 'Company'
+    },
+
+    sibling: {
+      model: 'Buyer'
+    }
   }
 };
 
