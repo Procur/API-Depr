@@ -8,7 +8,7 @@
 module.exports = {
 
   create: function(req, res){
-    res.send(200);
+
   },
 
   update: function(req, res){
