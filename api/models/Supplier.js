@@ -10,6 +10,8 @@ module.exports = {
   adapter: 'api',
   attributes: {
 
+
+    //ASSOCIATIONS
     company: {
       model: 'Company'
     },

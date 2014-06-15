@@ -7,6 +7,8 @@
 
 module.exports = {
 
+
+  //ASSOCIATIONS
   adapter: 'api',
   attributes: {
     company: {
