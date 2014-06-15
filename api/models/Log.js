@@ -10,6 +10,10 @@ module.exports = {
   adapter: 'logging',
   attributes: {
 
+    clientIp: {
+      type: 'string',
+      required: true
+    },
     content: {
       type: 'string',
       required: 'true'

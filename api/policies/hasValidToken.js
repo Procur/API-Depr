@@ -1,6 +1,6 @@
 var token = require('../services/tokenFunctions.js');
 
-module.exports = function(req, res){
+module.exports = function(req, res, next){
   var apitoken = req.header('apitoken');
   token.validate(req, res, apitoken, function(result){
     if(result){

@@ -3,6 +3,10 @@
  *
  * @description :: Server-side logic for managing authentication
  * @help        :: See http://links.sailsjs.org/docs/controllers
+ *
+ * @api {get} /user/:id Request User information
+ * @apiName GetUser
+ * @apiGroup User
  */
 
 // LIBRARY INCLUSIONS //
