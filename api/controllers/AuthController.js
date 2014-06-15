@@ -32,6 +32,9 @@ module.exports = {
           account.findByEmail(params.email, function(err, user){
             if(user === undefined){
               //CREATE USER
+              params.emailVerified = false;
+              params.active = true;
+              params.profileComplete = false;
               User.create(params, function(err, user){
                 handler.serverError(res, err);
                 if(user === undefined) { return res.send(500, 'Lost in space!'); }
@@ -60,8 +63,8 @@ module.exports = {
   },
 
   login: function(req, res){
-    var email = req.header('email'),
-        password = req.header('password');
+    var email = req.query.email,
+        password = req.query.password;
     account.findByEmail(email, function(err, user){
       handler.serverError(res, err);
       if(user === undefined){ return res.send(400, 'Invalid email address'); }
@@ -130,7 +133,9 @@ module.exports = {
   },
 
   test: function(req, res){
-    console.log(process.env.HOSTNAME);
+    User.find(function(err, users){
+     res.json(users);
+    });
   }
 };
 
