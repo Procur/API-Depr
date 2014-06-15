@@ -4,9 +4,6 @@
  * @description :: Server-side logic for managing authentication
  * @help        :: See http://links.sailsjs.org/docs/controllers
  *
- * @api {get} /user/:id Request User information
- * @apiName GetUser
- * @apiGroup User
  */
 
 // LIBRARY INCLUSIONS //
@@ -41,13 +38,13 @@ module.exports = {
                 var expiry = token.generateExpiry();
                 //CREATE API TOKEN
                 ApiToken.create({ user: user.id, token: encryptedToken, activeUntil: expiry }, function(err, newToken){
-                  console.log(err);
-                  console.log(newToken);
                   if((err) || (newToken === undefined)){ return res.send(500, 'Lost in space!'); }
                   //SEND ACTIVATION EMAIL
+                  res.status(201);
+                  user.token = newToken.token;
+                  res.json(user);
                   mailer.sendActivationEmail(res, user.email, function(res){
-                    res.status(201);
-                    res.json([user, newToken]);
+
                   });
                 });
               });
@@ -82,7 +79,8 @@ module.exports = {
                   ApiToken.create({ user: user.id, token: apitoken, activeUntil: expiry }, function(err, token){
                     if((err) || (token === undefined)){ return res.send(500, 'Lost in space!');}
                     res.status(200);
-                    res.json([user, token]);
+                    user.token = token.token;
+                    res.json(user);
                   });
                 });
               });
@@ -94,7 +92,8 @@ module.exports = {
                 ApiToken.create({ user: user.id, token: apitoken, activeUntil: expiry }, function(err, token){
                   if((err) || (token === undefined)){ return res.send(500, 'Lost in space!');}
                   res.status(200);
-                  res.json([user, token]);
+                  user.token = token.token;
+                  res.json(user);
                 });
               });
             }

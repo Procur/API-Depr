@@ -11,6 +11,7 @@ var nodemailer = require('nodemailer'),
         pass: mandrill.pass
       }
     }),
+    crypto = require('crypto'),
     handler = require('../errorHandlers.js'),
     apiuser = require('../models/userFunctions.js'),
     hostname = process.env.HOSTNAME || 'localhost:1337';
@@ -25,7 +26,7 @@ module.exports = {
           activationMessage = '<a href="http://' + hostname + '/verify?token=' + emailToken + '">Click to verify your Procur account!</a>',
           mailOptions = {
           from: "support@procur.com",
-          to: user.email,
+          to: email,
           subject: "Procur Password Assistance",
           generateTextFromHTML: true,
           html: activationMessage
