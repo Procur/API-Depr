@@ -20,6 +20,10 @@ module.exports.policies = {
   // (`true` allows public access)
   '*': true,
 
+  'AuthController': {
+    test: ['hasValidToken']
+  },
+
   'UserController': {
     create: ['hasValidToken'],
     update: ['hasValidToken'],

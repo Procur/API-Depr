@@ -11,8 +11,8 @@ var token = require('../services/tokenFunctions.js'),
     auth = require('../services/authFunctions.js'),
     account = require('../services/models/userFunctions.js'),
     handler = require('../services/errorHandlers.js'),
-    mailer = require('../services/utilities/mailFunctions.js');
-
+    mailer = require('../services/utilities/mailFunctions.js'),
+    companyHelper = require('../services/models/companyFunctions.js');
 ///////////////////////
 
 module.exports = {
@@ -112,8 +112,8 @@ module.exports = {
   processEmailActivation: function(req, res){
     var activationToken = req.query.token;
     mailer.processEmailActivation(req, res, activationToken, function(user){
-      res.status(200);
-      res.json(user, 'Email verified');
+      res.status(200, 'Email verified');
+      res.json(user);
     });
   },
 
@@ -133,8 +133,10 @@ module.exports = {
   },
 
   test: function(req, res){
-    User.find(function(err, users){
-     res.json(users);
+    var token = req.headers.apitoken;
+    console.log(token);
+    companyHelper.findByApiToken(res, token, function(err, company){
+      res.json(company);
     });
   }
 };
