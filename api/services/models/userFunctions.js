@@ -5,7 +5,7 @@ module.exports = {
     ApiToken.findOne({ token: token }, function(err, token){
       handler.serverError(res, err);
       if(token === undefined){ return res.send(400, 'Invalid API token'); };
-      User.findOne({ email: token.email }, function(err, user){
+      User.findOne({ id: token.user }, function(err, user){
         handler.serverError(res, err);
         callback(err, user);
       });

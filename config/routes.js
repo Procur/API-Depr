@@ -25,6 +25,8 @@ module.exports.routes = {
   'post /signup': 'AuthController.signup',
   'post /login': 'AuthController.login',
   'get /test': 'AuthController.test',
-  'get /policy': 'UserController.create'
+  'get /policy': 'UserController.create',
+
+  'post /create/company': 'CompanyController.create'
 
 };

@@ -9,18 +9,67 @@ module.exports = {
 
   adapter: 'api',
   attributes: {
-
+    name: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+    phoneNumberCountryCode: {
+      type: 'string',
+      required: true
+    },
+    phoneNumber: {
+      type: 'string',
+      required: true
+    },
+    phoneExtension: {
+      type: 'string'
+    },
+    faxCountryCode: {
+      type: 'string'
+    },
+    faxNumber: {
+      type: 'string'
+    },
+    faxExtension: {
+      type: 'string'
+    },
+    email: {
+      type: 'email',
+      required: true
+    },
+    website: {
+      type: 'string'
+    },
+    industry: {
+      type: 'string'
+    },
+    employeeCount: {
+      type: 'integer',
+    },
+    primaryMode: {
+      type: 'string'
+    },
+    wizardComplete: {
+      type: 'boolean',
+    },
+    handle: {
+      type: 'string',
+      unique: true
+    },
+    active: {
+      type: 'boolean',
+      required: true
+    },
 
     //ASSOCIATIONS
     users: {
       collection: 'User',
       via: 'company'
     },
-
     buyer: {
       model: 'Buyer'
     },
-
     supplier: {
       model: 'Supplier'
     }
