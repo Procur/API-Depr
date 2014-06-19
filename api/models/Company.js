@@ -45,13 +45,13 @@ module.exports = {
       type: 'string'
     },
     employeeCount: {
-      type: 'integer',
+      type: 'integer'
     },
     primaryMode: {
       type: 'string'
     },
     wizardComplete: {
-      type: 'boolean',
+      type: 'boolean'
     },
     handle: {
       type: 'string',
@@ -64,8 +64,7 @@ module.exports = {
 
     //ASSOCIATIONS
     users: {
-      collection: 'User',
-      via: 'company'
+      model: 'User'
     },
     buyer: {
       model: 'Buyer'

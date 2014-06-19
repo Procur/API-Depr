@@ -11,25 +11,27 @@ var account = require('../services/models/userFunctions.js'),
 module.exports = {
 
   create: function(req, res){
-    var p = req.params,
+    var p = req.query,
         apitoken = req.headers.apitoken;
     account.findByApiToken(res, apitoken, function(err, user){
+      console.log(user);
       handler.serverError(res, err);
       Company.create({
-        user: token.user,
-        name: p.companyName,
-        phoneNumberCountryCode: p.companyPhoneCountryCode,
-        phoneNumber: p.companyPhone,
-        phoneExtension: p.companyPhoneExt,
-        faxCountryCode: p.companyFaxCountryCode,
-        faxNumber: p.companyFax,
-        faxExtension: p.companyFaxExt,
-        email: p.companyEmail,
-        website: p.companyWebsite,
-        industry: p.companyIndustry,
-        employeeCount: p.companyEmployeeCount,
+        users: user,
+        name: p.name,
+        phoneNumberCountryCode: p.phoneNumberCountryCode,
+        phoneNumber: p.phoneNumber,
+        phoneExtension: p.phoneExtension,
+        faxCountryCode: p.faxCountryCode,
+        faxNumber: p.faxNumber,
+        faxExtension: p.faxExtension,
+        email: p.email,
+        website: p.website,
+        industry: p.industry,
+        employeeCount: p.employeeCount,
         active: true
       }, function(err, company){
+        console.log(err);
         handler.serverError(res, err);
         //add location
         res.json(company);
