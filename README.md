@@ -60,8 +60,7 @@
 + Request Logs (application/json)
 
                 
-     + Headers
-     
+        + Headers
         {
             "apitoken": "$2a$$$10sGiu6GBwz62sfdvcMSLC6iL.keJekpS2xB.nLIMlUltU8ms0kkRi4yS"
         }
