@@ -67,25 +67,14 @@
        
         [
           {
-            "clientIp": "127.0.0.1",
-            "content": "Invalid API token sent",
-            "createdAt": "2014-06-15T02:44:32.955Z",
-            "updatedAt": "2014-06-15T02:44:32.955Z",
-            "id": "539d08909869a793104f06fe"
-          },
-          {
-            "clientIp": "127.0.0.1",
-            "content": "Invalid API token sent",
-            "createdAt": "2014-06-15T02:44:42.117Z",
-            "updatedAt": "2014-06-15T02:44:42.117Z",
-            "id": "539d089a9869a793104f06ff"
-          },
-          {
-            "clientIp": "127.0.0.1",
-            "content": "Invalid API token sent",
-            "createdAt": "2014-06-15T02:45:21.703Z",
-            "updatedAt": "2014-06-15T02:45:21.703Z",
-            "id": "539d08c15cddf5f310a037ff"
+            "firstName": "Doctor",
+            "lastName": "Strangelove",
+            "email": "dstrangelove@procur.com",
+            "emailVerified": false,
+            "active": true,
+            "profileComplete": false,
+            "createdAt": "2014-06-17T00:16:08.034Z",
+            "updatedAt": "2014-06-17T00:16:08.034Z"
           }
         ]
         
