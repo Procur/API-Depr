@@ -39,6 +39,10 @@ module.exports.routes = {
 
   // LOCATION CONTROLLER //
 
+  // ADMINISTRATOR CONTROLLER //
+  'get /administrators': 'AdministratorController.index',
+  'post /administrators': 'AdministratorController.create',
+
   // LOG CONTROLLER //
   'get /fetchlogs': 'LogController.index',
   'get /fetchlogs/log': 'LogController.show'

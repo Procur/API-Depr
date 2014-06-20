@@ -13,8 +13,19 @@ module.exports = {
     Administrator.find(function(err, administrators){
       handler.serverError(res, err);
       handler.notFound(res, administrators);
-      res.status(200);
-      res.json(administrators);
+
+      var adminIdList = [];
+      administrators.forEach(function(admin){
+        console.log(admin.user);
+        adminIdList.push(admin.user);
+      });
+      console.log(adminIdList);
+      User.find().where({id: adminIdList}).exec(function(err, admins){
+        handler.serverError(res, err);
+        handler.notFound(res, admins);
+        res.status(200);
+        res.json(admins);
+      });
     });
   },
 

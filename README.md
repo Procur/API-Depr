@@ -54,6 +54,42 @@
 
 #Administration
 
+##List Administrators [GET]
++ Request Logs (application/json)
+
+                
+        + Headers
+        {
+            "apitoken": "$2a$$$10sGiu6GBwz62sfdvcMSLC6iL.keJekpS2xB.nLIMlUltU8ms0kkRi4yS"
+        }
+
++ Response 200 (application/json)
+       
+        [
+          {
+            "clientIp": "127.0.0.1",
+            "content": "Invalid API token sent",
+            "createdAt": "2014-06-15T02:44:32.955Z",
+            "updatedAt": "2014-06-15T02:44:32.955Z",
+            "id": "539d08909869a793104f06fe"
+          },
+          {
+            "clientIp": "127.0.0.1",
+            "content": "Invalid API token sent",
+            "createdAt": "2014-06-15T02:44:42.117Z",
+            "updatedAt": "2014-06-15T02:44:42.117Z",
+            "id": "539d089a9869a793104f06ff"
+          },
+          {
+            "clientIp": "127.0.0.1",
+            "content": "Invalid API token sent",
+            "createdAt": "2014-06-15T02:45:21.703Z",
+            "updatedAt": "2014-06-15T02:45:21.703Z",
+            "id": "539d08c15cddf5f310a037ff"
+          }
+        ]
+        
+
 ##Fetch Error Logs [/fetchlogs]
 
 ### Fetch All Logs [GET]
