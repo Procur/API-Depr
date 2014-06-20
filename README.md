@@ -58,16 +58,19 @@
 
 ### Fetch All Logs [GET]
 + Request Logs (application/json)
-    + Headers
+
+                
+        + Headers
         {
             "apitoken": "$2a$$$10sGiu6GBwz62sfdvcMSLC6iL.keJekpS2xB.nLIMlUltU8ms0kkRi4yS"
         }
 
-    + Response 200 (application/json)
++ Response 200 (application/json)
+       
         {
             "clientIp": "127.0.0.1",
             "content": "Invalid API token sent",
             "createdAt": "2014-06-15T02:45:21.703Z",
             "updatedAt": "2014-06-15T02:45:21.703Z",
             "id": "539d08c15cd55f5f312a037ff"
-}
+        }
