@@ -14,8 +14,8 @@ module.exports = {
     var p = req.query,
         apitoken = req.headers.apitoken;
     account.findByApiToken(res, apitoken, function(err, user){
-      console.log(user);
       handler.serverError(res, err);
+      handler.notFound(res, user);
       Company.create({
         users: user,
         name: p.name,
