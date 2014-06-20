@@ -1,7 +1,7 @@
 var handler = require('../errorHandlers.js');
 
 module.exports = {
-  
+
   findByApiToken: function(req, res, callback){
     var token = req.headers.apitoken;
     ApiToken.findOne({ token: token }, function(err, token){
