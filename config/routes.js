@@ -40,5 +40,6 @@ module.exports.routes = {
   // LOCATION CONTROLLER //
 
   // LOG CONTROLLER //
-  'get /fetchlogs': 'LogController.index'
+  'get /fetchlogs': 'LogController.index',
+  'get /fetchlogs/log': 'LogController.show'
 };
