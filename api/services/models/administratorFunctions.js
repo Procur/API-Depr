@@ -1,5 +1,5 @@
 var handler = require('../errorHandlers.js'),
-    account = require('userFunctions.js');
+    account = require('./userFunctions.js');
 
 module.exports = {
   findByApiToken: function(req, res, callback){

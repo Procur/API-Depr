@@ -13,7 +13,7 @@ module.exports = {
   },*/ //DEPRECATED
 
   findByApiToken: function(req, res, callback){
-    var token = req.header('apitoken');
+    var token = req.headers.apitoken;
     ApiToken.findOne({ token: token }, function(err, token){
       handler.serverError(res, err);
       if(token === undefined){ return res.send(400, 'Invalid API token'); };
@@ -37,3 +37,4 @@ module.exports = {
     });
   }
 };
+

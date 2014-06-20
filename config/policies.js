@@ -20,6 +20,10 @@ module.exports.policies = {
   // (`true` allows public access)
   '*': true,
 
+  'AdministratorController': {
+    '*': ['hasValidToken', 'isAdministrator']
+  },
+
   'AuthController': {
     test: ['hasValidToken']
   },
@@ -46,6 +50,10 @@ module.exports.policies = {
     create: ['hasValidToken'],
     update: ['hasValidToken'],
     deactivate: ['hasValidToken']
+  },
+
+  'LogController': {
+    '*': ['hasValidToken', 'isAdministrator']
   }
 
 	// Here's an example of mapping some policies to run before

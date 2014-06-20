@@ -22,13 +22,23 @@
 
 module.exports.routes = {
 
+  // AUTH CONTROLLER //
   'post /signup': 'AuthController.signup',
   'post /login': 'AuthController.login',
   'get /test': 'AuthController.test',
-  'get /policy': 'UserController.create',
 
+  // USER CONTROLLER //
+  'get /socket': 'UserController.create',
+
+  // COMPANY CONTROLLER //
   'post /create/company': 'CompanyController.create',
 
-  'get /socket': 'UserController.create'
+  // BUYER CONTROLLER //
 
+  // SUPPLIER CONTROLLER //
+
+  // LOCATION CONTROLLER //
+
+  // LOG CONTROLLER //
+  'get /fetchlogs': 'LogController.index'
 };
