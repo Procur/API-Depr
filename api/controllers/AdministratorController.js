@@ -23,8 +23,9 @@ module.exports = {
       Administrator.findOne(user, function(err, administrator){
         handler.serverError(res, err);
         handler.notFound(res, administrator);
-
-      })
-    })
+        res.status(201);
+        res.json(administrator);
+      });
+    });
   }
 };
