@@ -25,7 +25,7 @@ module.exports.policies = {
   },
 
   'UserController': {
-    create: ['hasValidToken'],
+    //create: ['hasValidToken'],
     update: ['hasValidToken'],
     deactivate: ['hasValidToken']
   },

@@ -27,6 +27,8 @@ module.exports.routes = {
   'get /test': 'AuthController.test',
   'get /policy': 'UserController.create',
 
-  'post /create/company': 'CompanyController.create'
+  'post /create/company': 'CompanyController.create',
+
+  'get /socket': 'UserController.create'
 
 };
