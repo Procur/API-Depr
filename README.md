@@ -54,7 +54,9 @@
 
 #Administration
 
-##List Administrators [GET]
+##Fetch Administrator List [/admin/staff]
+
+###List Administrators [GET]
 + Request Logs (application/json)
 
                 
