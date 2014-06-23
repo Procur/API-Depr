@@ -6,7 +6,11 @@ module.exports = {
     ///THIS IS PURELY FOR TESTING. NOT FOR PRODUCTION. REBUILD
     ApiToken.findOne({ token: token }, function(err, token){
       User.findOne({ id: token.user }).populate('company').exec(function(err, res){
-        callback(res);
+        Company.findOne({ users: user }, function(err, company){
+          handler.serverError(res, err);
+          handler.notFound(res, company);
+          callback(company);
+        });
       });
     });
   }

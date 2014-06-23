@@ -6,7 +6,8 @@
  */
 
 var account = require('../services/models/userFunctions.js'),
-    handler = require('../services/errorHandlers.js');
+    handler = require('../services/errorHandlers.js'),
+    company = require('../services/models/companyFunctions.js');
 
 module.exports = {
 
@@ -42,7 +43,13 @@ module.exports = {
   },
 
   show: function(req, res){
-
+    var apitoken = req.headers.apitoken;
+    company.findByApiToken(res, apitoken, function(company){
+      handler.serverError(res, err);
+      handler.notFound(res, company);
+      res.status(200);
+      res.json(company);
+    });
   },
 
   update: function(req, res){
