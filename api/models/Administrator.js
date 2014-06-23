@@ -10,9 +10,7 @@ module.exports = {
   adapter: 'api',
   attributes: {
     user: {
-      type: 'string',
-      required: true,
-      unique: true
+      model: 'User'
     },
     email: {
       type: 'email',
