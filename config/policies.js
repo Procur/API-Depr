@@ -31,25 +31,29 @@ module.exports.policies = {
   'UserController': {
     //create: ['hasValidToken'],
     update: ['hasValidToken'],
-    deactivate: ['hasValidToken']
+    deactivate: ['hasValidToken'],
+    findAll: ['hasValidToken','isAdministrator']
   },
 
   'CompanyController': {
     create: ['hasValidToken'],
     update: ['hasValidToken'],
-    deactivate: ['hasValidToken']
+    deactivate: ['hasValidToken'],
+    findAll: ['hasValidToken','isAdministrator']
   },
 
   'BuyerController': {
     create: ['hasValidToken'],
     update: ['hasValidToken'],
-    deactivate: ['hasValidToken']
+    deactivate: ['hasValidToken'],
+    findAll: ['hasValidToken','isAdministrator']
   },
 
   'SupplierController': {
     create: ['hasValidToken'],
     update: ['hasValidToken'],
-    deactivate: ['hasValidToken']
+    deactivate: ['hasValidToken'],
+    findAll: ['hasValidToken','isAdministrator']
   },
 
   'LogController': {
