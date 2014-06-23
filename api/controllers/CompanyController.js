@@ -57,7 +57,17 @@ module.exports = {
   },
 
   deactivate: function(req, res){
-
+    var apitoken = req.headers.apitoken;
+    company.findByApiToken(res, apitoken, function(company){
+      handler.serverError(res, err);
+      handler.notFound(res, company);
+      Company.update(company, { active: false }, function(err, company){
+        handler.serverError(res, err);
+        handler.notFound(res, company);
+        res.status(200);
+        res.json(company);
+      });
+    });
   },
 
   //ADMIN ONLY ACTIONS
