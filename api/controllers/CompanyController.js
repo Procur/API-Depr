@@ -51,6 +51,16 @@ module.exports = {
 
   deactivate: function(req, res){
 
+  },
+
+  //ADMIN ONLY ACTIONS
+
+  findAll: function(req, res){
+    Company.find({}, function(err, companies){
+      handler.serverError(res, err);
+      res.status(200);
+      res.json(companies);
+    });
   }
 };
 

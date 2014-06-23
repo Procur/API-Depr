@@ -29,19 +29,24 @@ module.exports.routes = {
 
   // USER CONTROLLER //
   'get /socket': 'UserController.create',
+  'get /admin/users': 'UserController.findAll',
 
   // COMPANY CONTROLLER //
   'post /create/company': 'CompanyController.create',
+  'get /admin/companies': 'CompanyController.findAll',
 
   // BUYER CONTROLLER //
+  'get /admin/buyers': 'BuyerController.findAll',
 
   // SUPPLIER CONTROLLER //
+  'get /admin/suppliers': 'SupplierController.findAll',
 
   // LOCATION CONTROLLER //
+  'get /admin/locations': 'LocationController.findAll',
 
   // ADMINISTRATOR CONTROLLER //
-  'get /administrators': 'AdministratorController.index',
-  'post /administrators': 'AdministratorController.create',
+  'get /admin/staff': 'AdministratorController.index',
+  'post /admin/staff': 'AdministratorController.create',
 
   // LOG CONTROLLER //
   'get /fetchlogs': 'LogController.index',

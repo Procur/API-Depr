@@ -5,6 +5,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var handler = require('../services/errorHandlers.js');
+
 module.exports = {
 
   create: function(req, res){
@@ -17,6 +19,16 @@ module.exports = {
 
   deactivate: function(req, res){
 
+  },
+
+  //ADMIN ONLY ACTIONS
+
+  findAll: function(req, res){
+    Supplier.find({}, function(err, suppliers){
+      handler.serverError(res, err);
+      res.status(200);
+      res.json(suppliers);
+    });
   }
 };
 
