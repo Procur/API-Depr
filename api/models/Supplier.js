@@ -15,9 +15,13 @@ module.exports = {
     company: {
       model: 'Company'
     },
-
     sibling: {
       model: 'Buyer'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.id;
+      return obj;
     }
   }
 };

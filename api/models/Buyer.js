@@ -17,6 +17,11 @@ module.exports = {
 
     sibling: {
       model: 'Supplier'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.id;
+      return obj;
     }
   }
 };

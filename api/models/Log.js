@@ -17,6 +17,11 @@ module.exports = {
     content: {
       type: 'string',
       required: 'true'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.id;
+      return obj;
     }
 
   }

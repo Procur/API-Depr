@@ -18,6 +18,11 @@ module.exports = {
       type: 'email',
       required: true,
       unique: true
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.id;
+      return obj;
     }
   }
 };

@@ -14,11 +14,15 @@ module.exports = {
       required: 'true',
       unique: true
     },
-
     token: {
       type: 'string',
       required: 'true',
       unique: true
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
   }
 };

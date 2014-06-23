@@ -41,5 +41,9 @@
     "url": "git://github.com/willricketts/api.git"
   },
   "author": "willricketts",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "grunt-mocha-test": "^0.11.0",
+    "mocha": "^1.20.1"
+  }
 }
