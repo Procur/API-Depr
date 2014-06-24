@@ -28,7 +28,6 @@ module.exports.routes = {
   'get /test': 'AuthController.test',
 
   // USER CONTROLLER //
-  'get /socket': 'UserController.create',
   'get /admin/users': 'UserController.findAll',
 
   // COMPANY CONTROLLER //
