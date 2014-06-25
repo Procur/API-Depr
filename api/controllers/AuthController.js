@@ -43,11 +43,10 @@ module.exports = {
                 ApiToken.create({ user: user.id, token: encryptedToken, activeUntil: expiry }, function(err, newToken){
                   if((err) || (newToken === undefined)){ return res.send(500, 'Lost in space!'); }
                   //SEND ACTIVATION EMAIL
-                  res.status(201);
-                  user.token = newToken.token;
-                  res.json(user);
                   mailer.sendActivationEmail(res, user.email, function(res){
-
+                    res.status(201);
+                    user.token = newToken.token;
+                    res.json(user);
                   });
                 });
               });
