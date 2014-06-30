@@ -27,7 +27,6 @@ module.exports = {
     });
   }
 };
-
 /* ////  DEPRECATED ACTIONS  ////
 
 findByApiToken: function(res, token, callback) {
