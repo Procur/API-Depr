@@ -22,6 +22,9 @@
 
 module.exports.routes = {
 
+  //API STATUS
+  'get /': "UtilityController.index",
+
   // AUTH CONTROLLER //
   'post /signup': 'AuthController.signup',
   'post /login': 'AuthController.login',
