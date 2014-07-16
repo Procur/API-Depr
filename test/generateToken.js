@@ -4,7 +4,6 @@ Tests for correct generation of API token
 
 */
 
-"use strict"
 var expect = require('chai').expect;
 var should = require('should');
 var assert = require('assert');
