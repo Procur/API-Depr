@@ -3,7 +3,6 @@ var expect = require('chai').expect;
 var should = require('should');
 var assert = require('assert');
 var request = require('supertest');
-
 var tokenGenerator = require('../api/services/tokenFunctions.js');
 
 describe('Generate Token', function(){
