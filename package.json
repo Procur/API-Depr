@@ -5,7 +5,9 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "async": "^0.9.0",
     "bcrypt": "^0.7.8",
+    "chai": "^1.9.1",
     "connect-redis": "^1.4.5",
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
@@ -22,6 +24,7 @@
     "grunt-sync": "~0.0.4",
     "include-all": "~0.1.3",
     "install": "^0.1.7",
+    "mocha": "^1.20.1",
     "nodemailer": "^0.6.5",
     "nodemon": "^1.2.0",
     "npm": "^1.4.15",
@@ -29,6 +32,8 @@
     "sails": "0.10.0-rc8",
     "sails-disk": "~0.10.0",
     "sails-mongo": "https://github.com/balderdashy/sails-mongo/archive/0.10.0-rc5.tar.gz",
+    "should": "^4.0.4",
+    "supertest": "^0.13.0",
     "waterline": "^0.9.16"
   },
   "scripts": {
