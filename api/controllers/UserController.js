@@ -5,7 +5,9 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var handler = require('../services/errorHandlers.js');
+var handler = require('../services/errorHandlers.js'),
+    account = require('../services/models/userFunctions.js'),
+    async = require('async');
 
 module.exports = {
 
@@ -18,7 +20,13 @@ module.exports = {
   },
 
   deactivate: function(req, res){
-
+    account.findByApiToken(req, res, function(err, user){
+      User.update(user, {active: false}, function(err, user){
+        handler.serverError(res, err);
+        res.status(200);
+        res.send(user);
+      });
+    });
   },
 
   //ADMIN ONLY ACTIONS

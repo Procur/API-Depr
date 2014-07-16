@@ -7,6 +7,6 @@
 
 module.exports = {
 	index: function(req, res){
-		res.send("OK", 200);
-	}
+		res.send("Procur. API v0.1.0", 200);
+	},
 };

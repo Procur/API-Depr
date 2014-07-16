@@ -23,7 +23,7 @@ module.exports = {
     auth.hashPassword(params.password, function(err, hash){
       params.password = hash;
       handler.serverError(res, err);
-      //GENERATE API TOKEN
+      //GENERATE API TOKEN  q
       token.generate(function(err, apitoken){
         handler.serverError(res, err);
         token.hash(apitoken, function(err, encryptedToken){
