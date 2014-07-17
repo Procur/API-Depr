@@ -40,7 +40,7 @@ module.exports.session = {
   //db: process.env.REDIS_DB || 'api',
   //pass: process.env.REDIS_PASS || ""
   // prefix: 'sess:'
-  url: process.env.REDISTOGO_URL || 'localhost:6379'
+  url: process.env.REDISTOGO_URL// || 'localhost:6379'
 
 
   // Uncomment the following lines to use your Mongo adapter as a session store
