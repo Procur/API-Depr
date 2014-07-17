@@ -7,7 +7,7 @@
 
 module.exports = {
 
-  adapter: 'logging',
+  adapter: 'api',
   attributes: {
 
     clientIp: {
@@ -26,4 +26,3 @@ module.exports = {
 
   }
 };
-
