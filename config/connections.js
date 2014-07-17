@@ -32,14 +32,14 @@ module.exports.connections = {
       url: process.env.MONGOHQ_URL || 'mongodb://localhost:27017/api'
   },
 
-  logging: {
+  /*logging: {
     adapter: 'sails-mongo',
     url: process.env.LOGGING_DB_URL || 'mongodb://localhost:27017/log'
   },
 
   localDiskDb: {
     adapter: 'sails-disk'
-  },
+  },*/
 
   // MySQL is the world's most popular relational database.
   // http://en.wikipedia.org/wiki/MySQL
