@@ -37,7 +37,8 @@
     "sails-mongo": "https://github.com/balderdashy/sails-mongo/archive/0.10.0-rc5.tar.gz",
     "should": "^4.0.4",
     "supertest": "^0.13.0",
-    "waterline": "^0.9.16"
+    "waterline": "^0.9.16",
+    "waterline-errors": "^0.9.1"
   },
   "scripts": {
     "start": "node app.js",
