@@ -31,6 +31,10 @@ module.exports.session = {
   // In production, uncomment the following lines to set up a shared redis session store
   // that can be shared across multiple Sails.js servers
   adapter: 'redis',
+  host: process.env.REDIS_HOST || 'localhost',
+  port: process.env.REDIS_PORT || 6379,
+  db: process.env.REDIS_DB || "",
+  pass: process.env.REDIS_PASS || ""
   //
   // The following values are optional, if no options are set a redis instance running
   // on localhost is expected.
@@ -40,7 +44,8 @@ module.exports.session = {
   //db: process.env.REDIS_DB || 'api',
   //pass: process.env.REDIS_PASS || ""
   // prefix: 'sess:'
-  url: process.env.REDISTOGO_URL// || 'localhost:6379'
+
+
 
 
   // Uncomment the following lines to use your Mongo adapter as a session store
