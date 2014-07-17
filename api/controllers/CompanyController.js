@@ -13,33 +13,36 @@ module.exports = {
 
   create: function(req, res){
     var p = req.query,
-        apitoken = req.headers.apitoken;
-    account.findByApiToken(res, apitoken, function(err, user){
-      handler.serverError(res, err);
-      handler.notFound(res, user);
-      Company.create({
-        users: user,
-        name: p.name,
-        phoneNumberCountryCode: p.phoneNumberCountryCode,
-        phoneNumber: p.phoneNumber,
-        phoneExtension: p.phoneExtension,
-        faxCountryCode: p.faxCountryCode,
-        faxNumber: p.faxNumber,
-        faxExtension: p.faxExtension,
-        email: p.email,
-        website: p.website,
-        industry: p.industry,
-        employeeCount: p.employeeCount,
-        active: true
-      }, function(err, company){
-        console.log(err);
+    apitoken = req.headers.apitoken;
+    if(apitoken !== undefined){
+      account.findByApiToken(res, apitoken, function(err, user){
         handler.serverError(res, err);
-        //add location
-        res.json(company);
+        handler.notFound(res, user);
+        Company.create({
+          users: user,
+          name: p.name,
+          phoneNumberCountryCode: p.phoneNumberCountryCode,
+          phoneNumber: p.phoneNumber,
+          phoneExtension: p.phoneExtension,
+          faxCountryCode: p.faxCountryCode,
+          faxNumber: p.faxNumber,
+          faxExtension: p.faxExtension,
+          email: p.email,
+          website: p.website,
+          industry: p.industry,
+          employeeCount: p.employeeCount,
+          active: true
+        }, function(err, company){
+          console.log(err);
+          handler.serverError(res, err);
+          //add location
+          res.json(company);
+        });
       });
-    });
-
-
+    }
+    else {
+      res.send(400, 'No API Token provided.');
+    }
   },
 
   show: function(req, res){
@@ -80,4 +83,3 @@ module.exports = {
     });
   }
 };
-
