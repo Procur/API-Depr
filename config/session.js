@@ -55,7 +55,6 @@ module.exports.session = {
   // port: 27017,
   // db: 'sails',
   // collection: 'sessions',
-  //
   // Optional Values:
   //
   // # Note: url will override other connection settings

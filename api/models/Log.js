@@ -23,6 +23,5 @@ module.exports = {
       delete obj.id;
       return obj;
     }
-
   }
 };

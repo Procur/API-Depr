@@ -3,14 +3,15 @@ var handler = require('../errorHandlers.js'),
 
 module.exports = {
   findByApiToken: function(req, res, callback){
-    account.findByApiToken(req, res, function(err, user){
+    var apitoken = req.headers.apitoken;
+    account.findByApiToken(res, apitoken, function(err, user){
       handler.serverError(res, err);
       handler.notFound(res, user);
       Administrator.findOne({ email: user.email }, function(err, administrator){
         handler.serverError(res, err);
         callback(administrator);
-      })
-    })
+      });
+    });
   },
 
   findByEmail: function(email, callback){
