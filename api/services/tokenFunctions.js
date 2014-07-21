@@ -1,3 +1,9 @@
+/**
+ * tokenFunctions.js
+ *
+ * @description :: A set up helper functions for API tokens
+ */
+
 var bcrypt = require('bcrypt'),
     crypto = require('crypto');
 

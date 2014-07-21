@@ -2,7 +2,6 @@
  * AdministratorController
  *
  * @description :: Server-side logic for managing administrators
- * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
 var handler = require('../services/errorHandlers.js'),
@@ -28,12 +27,26 @@ module.exports = {
   },
 
   create: function(req, res){
-    account.findByEmail(req, res, function(err, user){
+    var email = req.query.email;
+    account.findByEmail(email, function(err, user){
       handler.serverError(res, err);
       handler.notFound(res, user);
-      Administrator.create(user, function(err, admin){
-
-      });
+      if(user !== undefined){
+        Administrator.findOne({ email: user.email}, function(err, admin){
+          if(admin === undefined){
+            Administrator.create({ email: user.email, user: user.id }, function(err, admin){
+              handler.serverError(res, err);
+              handler.notFound(res, admin);
+              if(admin !== undefined) {
+                res.json(200, admin);
+              }
+            });
+          }
+          else {
+            res.send(400, 'User is already an administrator.');
+          }
+        });
+      }
     });
   }
 };
