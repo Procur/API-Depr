@@ -30,13 +30,12 @@ module.exports = {
   },
 
   create: function(req, res){
-    account.findByApiToken(req, res, function(err, user){
-      Administrator.findOne(user, function(err, administrator){
-        handler.serverError(res, err);
-        handler.notFound(res, administrator);
-        res.status(201);
-        res.json(administrator);
+    account.findByEmail(req, res, function(err, user){
+      handler.serverError(res, err);
+      handler.notFound(res, user);
+      Administrator.create(user, function(err, admin){
+
       });
     });
-  },
+  }
 };

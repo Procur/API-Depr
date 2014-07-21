@@ -114,6 +114,6 @@ nbproject
 .idea
 .node_history
 db
-db
+db/
 atlassian-ide-plugin.xml
 node_modules
