@@ -16,10 +16,8 @@ module.exports = {
 
       var adminIdList = [];
       administrators.forEach(function(admin){
-        console.log(admin.user);
         adminIdList.push(admin.user);
       });
-      console.log(adminIdList);
       User.find().where({id: adminIdList}).exec(function(err, admins){
         handler.serverError(res, err);
         handler.notFound(res, admins);
