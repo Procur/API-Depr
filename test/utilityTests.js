@@ -17,7 +17,11 @@ describe('Heartbeat test', function(){
 
   it('Should test API version response', function(){
     request(url).get('/').end(function(err, response){
+      if(err){
+        throw err;
+      }
       response.should.have.status(200);
+      done();
     });
   });
 });
