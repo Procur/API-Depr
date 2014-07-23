@@ -12,7 +12,7 @@ var tokenGenerator = require('../api/services/tokenFunctions.js');
 
 
 //TESTS API HEARTBEAT -- [GET /]
-describe('Heartbeat test', function(){
+/*describe('Heartbeat test', function(){
   var url = "http://localhost:1337";
 
   it('Should test API version response', function(){
@@ -24,4 +24,4 @@ describe('Heartbeat test', function(){
       done();
     });
   });
-});
+});*/
