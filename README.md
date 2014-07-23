@@ -80,6 +80,32 @@
           }
         ]
 
+##Create Administrator [/administrator/create]
+
+###Create Administrator [POST]
++ Request Logs (application/json)
+
+
+        + Headers
+        {
+            "apitoken": "$2a$$$10sGiu6GBwz62sfdvcMSLC6iL.keJekpS2xB.nLIMlUltU8ms0kkRi4yS"
+        }
+
+        + Params
+        {
+            "email": "newadmin@procur.com"
+        }
+
++ Response 200 (application/json)
+
+        {
+	         "_id" : ObjectId("53cd77aa393b5edc5f3b63e1"),
+	         "email" : "newadmin@procur.com",
+	         "user" : ObjectId("53ce7716393c5ed2543b63df"),
+	         "createdAt" : ISODate("2014-07-21T20:26:18.903Z"),
+	         "updatedAt" : ISODate("2014-07-21T20:26:18.903Z")
+        }
+
 
 ##Fetch Error Logs [/fetchlogs]
 
