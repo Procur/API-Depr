@@ -33,6 +33,8 @@ module.exports = {
       handler.notFound(res, user);
       if(user !== undefined){
         Administrator.findOne({ email: user.email}, function(err, admin){
+          handler.serverError(res, err);
+          handler.notFound(res, admin);
           if(admin === undefined){
             Administrator.create({ email: user.email, user: user.id }, function(err, admin){
               handler.serverError(res, err);
