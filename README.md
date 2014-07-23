@@ -168,10 +168,10 @@
             "id": "539d08c15cd55f5f312a037ff"
         }
 
-  #Utility
-  ##Version [/]
-  ###Request API Version [GET]
-  + Request API Version and Status (application/json)
+#Utility
+##Version [/]
+###Request API Version [GET]
++ Request API Version and Status (application/json)
 
         {
           Procur. API v0.1.0
