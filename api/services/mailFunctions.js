@@ -12,8 +12,6 @@ var nodemailer = require('nodemailer'),
       }
     }),
     crypto = require('crypto'),
-    handler = require('../errorHandlers.js'),
-    apiuser = require('../models/userFunctions.js'),
     hostname = process.env.HOSTNAME || 'localhost:1337';
 ///////////////////////////
 
@@ -21,7 +19,7 @@ module.exports = {
 
   sendActivationEmail: function(res, email, callback){
     crypto.randomBytes(256, function(err, randomBytes){
-      handler.serverError(res, err);
+      errorHandlers.serverError(res, err);
       var emailToken = randomBytes.toString('base64').replace(/\//g,'_').replace(/\+/g,'-'),
           activationMessage = '<a href="http://' + hostname + '/verify?token=' + emailToken + '">Click to verify your Procur account!</a>',
           mailOptions = {
@@ -32,14 +30,14 @@ module.exports = {
           html: activationMessage
           };
       EmailToken.findOne({ email: email }, function(err, token){
-        handler.serverError(res, err);
+        errorHandlers.serverError(res, err);
         if(token !== undefined){
           EmailToken.destroy(token, function(err, token){
-            handler.serverError(res, err);
+            errorHandlers.serverError(res, err);
             EmailToken.create({ email: email, token: emailToken }, function(err, token){
-              handler.serverError(res, err);
+              errorHandlers.serverError(res, err);
               smtpTransport.sendMail(mailOptions, function(err, response){
-                handler.serverError(res, err);
+                errorHandlers.serverError(res, err);
                 callback(response);
               });
             });
@@ -51,10 +49,10 @@ module.exports = {
 
   processEmailActivation: function(req, res, activationToken, callback){
     EmailToken.findOne({ token: activationToken}, function(err, token){
-      handler.serverError(res, err);
+      errorHandlers.serverError(res, err);
       if(token === undefined){ return res.send(400, 'Invalid activation token'); }
-      apiuser.findByEmail(token.email, function(err, user){
-        apiuser.setEmailVerified(res, user, function(user){
+      userFunctions.findByEmail(token.email, function(err, user){
+        userFunctions.setEmailVerified(res, user, function(user){
           callback(user);
         });
       });

@@ -1,13 +1,11 @@
-var handler = require('../errorHandlers.js');
-
 module.exports = {
 
   findByApiToken: function(res, apitoken, callback){
     ApiToken.findOne({ token: apitoken }, function(err, token){
-      handler.serverError(res, err);
+      errorHandlers.serverError(res, err);
       if(token === undefined){ return res.send(400, 'Invalid API token'); }
       User.findOne({ id: token.user }, function(err, user){
-        handler.serverError(res, err);
+        errorHandlers.serverError(res, err);
         callback(err, user);
       });
     });
@@ -23,12 +21,12 @@ module.exports = {
 
 findByApiToken: function(res, token, callback) {
   ApiToken.findOne({ token: token }, function (err, token) {
-    handler.serverError(res, err);
+    errorHandlers.serverError(res, err);
     if (token === undefined) {
       return res.send(400, 'Invalid API token');
     };
     User.findOne({ id: token.user }, function (err, user) {
-      handler.serverError(res, err);
+      errorHandlers.serverError(res, err);
       callback(err, user);
     });
   });

@@ -2,6 +2,7 @@ module.exports = {
 
   serverError: function(res, err){
     if(err){
+      console.log(JSON.stringify(err));
       Log.create({ content: err }, function(err, error){
         //this seems dumb.
         return res.send(500, 'Lost in space!');

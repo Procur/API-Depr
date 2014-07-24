@@ -5,9 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var account = require('../services/models/userFunctions.js'),
-    handler = require('../services/errorHandlers.js'),
-    company = require('../services/models/companyFunctions.js');
 
 module.exports = {
 
@@ -15,9 +12,9 @@ module.exports = {
     var p = req.query,
     apitoken = req.headers.apitoken;
     if(apitoken !== undefined){
-      account.findByApiToken(res, apitoken, function(err, user){
-        handler.serverError(res, err);
-        handler.notFound(res, user);
+      userFunctions.findByApiToken(res, apitoken, function(err, user){
+        errorHandlers.serverError(res, err);
+        errorHandlers.notFound(res, user);
         Company.create({
           users: user,
           name: p.name,
@@ -34,7 +31,7 @@ module.exports = {
           active: true
         }, function(err, company){
           console.log(err);
-          handler.serverError(res, err);
+          errorHandlers.serverError(res, err);
           //add location
           res.json(company);
         });
@@ -47,9 +44,9 @@ module.exports = {
 
   show: function(req, res){
     var apitoken = req.headers.apitoken;
-    company.findByApiToken(res, apitoken, function(company){
-      handler.serverError(res, err);
-      handler.notFound(res, company);
+    companyFunctions.findByApiToken(res, apitoken, function(company){
+      errorHandlers.serverError(res, err);
+      errorHandlers.notFound(res, company);
       res.status(200);
       res.json(company);
     });
@@ -61,12 +58,12 @@ module.exports = {
 
   deactivate: function(req, res){
     var apitoken = req.headers.apitoken;
-    company.findByApiToken(res, apitoken, function(company){
-      handler.serverError(res, err);
-      handler.notFound(res, company);
+    companyFunctions.findByApiToken(res, apitoken, function(company){
+      errorHandlers.serverError(res, err);
+      errorHandlers.notFound(res, company);
       Company.update(company, { active: false }, function(err, company){
-        handler.serverError(res, err);
-        handler.notFound(res, company);
+        errorHandlers.serverError(res, err);
+        errorHandlers.notFound(res, company);
         res.status(200);
         res.json(company);
       });
@@ -77,7 +74,7 @@ module.exports = {
 
   findAll: function(req, res){
     Company.find({}, function(err, companies){
-      handler.serverError(res, err);
+      errorHandlers.serverError(res, err);
       res.status(200);
       res.json(companies);
     });

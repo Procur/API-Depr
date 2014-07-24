@@ -46,7 +46,7 @@ module.exports = {
       var currentDate = new Date();
       if(err){ return res.send(500, 'Lost in space!'); }
       else if(apitoken === undefined){ return res.send(400, 'Invalid API token'); }
-      else if(apitoken.expiry < currentDate){
+      else if(apitokenFunctions.expiry < currentDate){
         ApiToken.destroy(apitoken, function(err, deletedToken){
           if(err){ return res.send(500, 'Lost in space!'); }
           return res.send(400, 'Expired API token');

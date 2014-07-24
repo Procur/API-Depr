@@ -5,7 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var handler = require('../services/errorHandlers.js');
 
 module.exports = {
   create: function(req, res){
@@ -25,10 +24,9 @@ module.exports = {
 
   findAll: function(req, res){
     Buyer.find({}, function(err, buyers){
-      handler.serverError(res, err);
+      errorHandlers.serverError(res, err);
       res.status(200);
       res.json(buyers);
     });
   }
 };
-
