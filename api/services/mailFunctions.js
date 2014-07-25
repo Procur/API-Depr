@@ -34,15 +34,15 @@ module.exports = {
         if(token !== undefined){
           EmailToken.destroy(token, function(err, token){
             errorHandlers.serverError(res, err);
-            EmailToken.create({ email: email, token: emailToken }, function(err, token){
-              errorHandlers.serverError(res, err);
-              smtpTransport.sendMail(mailOptions, function(err, response){
-                errorHandlers.serverError(res, err);
-                callback(response);
-              });
-            });
           });
         }
+        EmailToken.create({ email: email, token: emailToken }, function(err, token){
+          errorHandlers.serverError(res, err);
+          smtpTransport.sendMail(mailOptions, function(err, response){
+            errorHandlers.serverError(res, err);
+            callback(res);
+          });
+        });
       });
     });
   },

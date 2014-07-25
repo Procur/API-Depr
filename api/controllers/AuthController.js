@@ -34,15 +34,16 @@ module.exports = {
                 errorHandlers.serverError(res, err);
                 if(user === undefined) { return res.send(500, 'Lost in space!'); }
                 var expiry = tokenFunctions.generateExpiry();
+
                 //CREATE API TOKEN
                 ApiToken.create({ user: user.id, token: encryptedToken, activeUntil: expiry }, function(err, newToken){
                   if((err) || (newToken === undefined)){ return res.send(500, 'Lost in space!'); }
                   //SEND ACTIVATION EMAIL
                   mailFunctions.sendActivationEmail(res, user.email, function(res){
+                    res.status(201);
+                    user.token = newToken.token;
+                    res.json(user);
                   });
-                  res.status(201);
-                  user.token = newToken.token;
-                  res.json(user);
                 });
               });
             }
